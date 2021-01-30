@@ -1,0 +1,9 @@
+D:\VS2021\API\EF_SQL\bin\Debug\netcoreapp3.1\EF_SQL.deps.json
+D:\VS2021\API\EF_SQL\bin\Debug\netcoreapp3.1\EF_SQL.dll
+D:\VS2021\API\EF_SQL\bin\Debug\netcoreapp3.1\EF_SQL.pdb
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.csprojAssemblyReference.cache
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.AssemblyInfoInputs.cache
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.AssemblyInfo.cs
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.csproj.CoreCompileInputs.cache
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.dll
+D:\VS2021\API\EF_SQL\obj\Debug\netcoreapp3.1\EF_SQL.pdb

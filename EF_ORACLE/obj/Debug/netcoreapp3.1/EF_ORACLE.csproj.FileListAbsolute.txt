@@ -1,0 +1,12 @@
+D:\VS2021\API\EF_ORACLE\bin\Debug\netcoreapp3.1\EF_ORACLE.deps.json
+D:\VS2021\API\EF_ORACLE\bin\Debug\netcoreapp3.1\EF_ORACLE.runtimeconfig.json
+D:\VS2021\API\EF_ORACLE\bin\Debug\netcoreapp3.1\EF_ORACLE.runtimeconfig.dev.json
+D:\VS2021\API\EF_ORACLE\bin\Debug\netcoreapp3.1\EF_ORACLE.dll
+D:\VS2021\API\EF_ORACLE\bin\Debug\netcoreapp3.1\EF_ORACLE.pdb
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.csprojAssemblyReference.cache
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.AssemblyInfoInputs.cache
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.AssemblyInfo.cs
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.csproj.CoreCompileInputs.cache
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.dll
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.pdb
+D:\VS2021\API\EF_ORACLE\obj\Debug\netcoreapp3.1\EF_ORACLE.genruntimeconfig.cache

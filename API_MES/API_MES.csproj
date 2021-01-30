@@ -8,22 +8,15 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
-  </PropertyGroup>  
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="Migrations\20200106030723_King20200113.cs" />
-    <Compile Remove="Migrations\20200106030723_King20200113.Designer.cs" />
-    <Compile Remove="Migrations\20200106031003_King20200114.cs" />
-    <Compile Remove="Migrations\20200106031003_King20200114.Designer.cs" />
-    <Compile Remove="Migrations\20200106031721_King20200106001.cs" />
-    <Compile Remove="Migrations\20200106031721_King20200106001.Designer.cs" />
-    <Compile Remove="Migrations\20200106031830_King20200106002.cs" />
-    <Compile Remove="Migrations\20200106031830_King20200106002.Designer.cs" />
-    <Compile Remove="Migrations\20200106032840_King20200106001.cs" />
-    <Compile Remove="Migrations\20200106032840_King20200106001.Designer.cs" />
-    <Compile Remove="Migrations\20200108064637_20200108010.cs" />
-    <Compile Remove="Migrations\20200108064637_20200108010.Designer.cs" />
-    <Compile Remove="Migrations\20200108070123_20200108010.cs" />
-    <Compile Remove="Migrations\20200108070123_20200108010.Designer.cs" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>  
+  <ItemGroup>
     <Compile Remove="Helper\RootPath_MVC.cs" />
   </ItemGroup>
 
@@ -46,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="Options\" />
     <Folder Include="Result\" />
     <Folder Include="Profiles\" />
