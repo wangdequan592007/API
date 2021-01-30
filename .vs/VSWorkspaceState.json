@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\API_MES",
+    "\\EF_ORACLE"
   ],
+  "SelectedNode": "\\API_MES\\API_MES.sln",
   "PreviewInSolutionExplorer": false
 }
