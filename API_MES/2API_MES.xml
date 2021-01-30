@@ -1,0 +1,706 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_MES</name>
+    </assembly>
+    <members>
+        <member name="M:API_MES.Controllers.AuthenticateController.GetAccessToken(API_MES.Entities.SessionUser)">
+            <summary>
+            通过SessionUser获取AccessToken
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.AuthenticateController.Get(System.String,System.String)">
+            <summary>
+            login
+            </summary>
+            <param name="userName">只能用user或者</param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.AuthenticateController.CheckAccount(System.String,System.String,System.String@)">
+            <summary>
+            模拟登陆校验，因为是模拟，所以逻辑很‘模拟’
+            </summary>
+            <param name="userName"></param>
+            <param name="pwd"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.DefaultController.Get2">
+            该接口用Authorize特性做了权限校验，如果没有通过权限校验，则http返回状态码为401
+            调用该接口的正确姿势是：
+            1.登陆，调用api/Auth接口获取到token
+            2.调用该接口 api/value2 在请求的Header中添加参数 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNTYwMzM1MzM3IiwiZXhwIjoxNTYwMzM3MTM3LCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemhhbmdzYW4iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.1S-40SrA4po2l4lB_QdzON_G5ZNT4P_6U25xhTcl7hI
+            Bearer后面有空格，且后面是第一步中接口返回的token值
+            
+        </member>
+        <member name="M:API_MES.Controllers.DefaultController.Get3">
+             这个接口必须用admin
+            
+        </member>
+        <member name="M:API_MES.Controllers.MusicController.Search(API_MES.Model.PageParams)">
+            <summary>
+            搜索音乐（百度提供API）
+            </summary>
+            <remarks>搜索音乐（百度提供API）</remarks>
+            <param name="param">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.MusicController.Details(System.String)">
+            <summary>
+            获取音乐详细信息
+            </summary>
+            <remarks>根据 /music/search 搜索出的音乐id 获取音乐详细信息</remarks>
+            <param name="ids">音乐Id 使用逗号分隔</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.MusicController.MusicPlay(System.String)">
+            <summary>
+            获取播放音乐的链接信息
+            </summary>
+            <remarks>根据 /music/search 搜索出的音乐id 获取音乐详细信息</remarks>
+            <param name="ids">音乐Id 使用逗号分隔</param>
+            <returns></returns>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfig.SigningCredentials">
+            <summary>
+            用于加密的密钥对象
+            </summary>
+        </member>
+        <member name="M:API_MES.Entities.AuthConfig.Init(API_MES.Entities.AuthConfigModel)">
+            <summary>
+            初始化
+            </summary>
+            <param name="authModel">配置类</param>
+        </member>
+        <member name="M:API_MES.Entities.AuthConfig.GetTokenValidationParameters">
+            <summary>
+            获取用户 Token 配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.SecurityKey">
+            <summary>
+            加密 Token 的密钥
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.Audience">
+            <summary>
+            订阅人
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.Issuer">
+            <summary>
+            发行人
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.TimeSpan">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.IsDeniedAction">
+            <summary>
+            权限不足时是否跳转到失败页面
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.DeniedAction">
+            <summary>
+            验证失败时跳转到此API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.IsLoginAction">
+            <summary>
+            未携带验证信息是否跳转到登录页面
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.LoginAction">
+            <summary>
+            未携带任何身份信息时时跳转到登陆API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.scheme">
+            <summary>
+            事件传递对象
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.TokenEbnormal">
+            <summary>
+            客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.TokenIssued">
+            <summary>
+            令牌解码后，issuer 或 audience不正确
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.NoPermissions">
+            <summary>
+            用户所属的角色中，均无访问API的权限，即无访问此API的权限
+            </summary>
+        </member>
+        <member name="T:API_MES.Entities.ResponseToken">
+            <summary>
+            标准Token响应
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Access_Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Expires_In">
+            <summary>
+            有效时间(秒)
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Token_Type">
+            <summary>
+            Token类型(使用jwt)
+            </summary>
+        </member>
+        <member name="M:API_MES.Entities.RoleService.UpdateRole">
+            <summary>
+            用于加载角色禾API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.UserModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.UserModel.BeRoles">
+            <summary>
+            所属角色
+            </summary>
+        </member>
+        <member name="T:API_MES.Mappers.EncryptionHash">
+            <summary>
+            用于加密生成
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetByHashString(System.String,System.Char[])">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="clearChar">需要去除的特殊字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetTokenSecurityKey(System.String,System.String)">
+            <summary>
+            将字符串生成密钥
+            </summary>
+            <param name="key">字符串</param>
+            <param name="encryptionType">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetByHashString(System.String)">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成jwt令牌
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成 JwtSecurityToken
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns>JwtSecurityToken</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtTokenDynamic(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>匿名类型</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtResponseToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>CZGL.Auth.Models。ResponseToken</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            直接生成 Token
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>Token字符串</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildClaims(System.String,System.String)">
+            <summary>
+            生成身份信息
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">登录时的角色</param>
+            <param name="audience">订阅者</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetIdentity(System.Security.Claims.Claim[])">
+            <summary>
+            生成用户标识
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.IsCanReadToken(System.String)">
+            <summary>
+            Token是否是符合要求的标准 Json Web 令牌
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetJwtSecurityToken(System.String)">
+            <summary>
+            从Token解密出JwtSecurityToken,JwtSecurityToken : SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetSecurityToken(System.String)">
+            <summary>
+            从 Token 解密出SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.Mappers.Http">
+            <summary>  
+            有关HTTP请求的辅助类  
+            </summary>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.CreateGetHttpResponse(System.String,System.Nullable{System.Int32},System.String,System.Net.CookieCollection)">
+            <summary>  
+            创建GET方式的HTTP请求  
+            </summary>  
+            <param name="url">请求的URL</param>  
+            <param name="timeout">请求的超时时间</param>  
+            <param name="userAgent">请求的客户端浏览器信息，可以为空</param>  
+            <param name="cookies">随同HTTP请求发送的Cookie信息，如果不需要身份验证可以为空</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.CreatePostHttpResponse(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Nullable{System.Int32},System.String,System.Text.Encoding,System.Net.CookieCollection)">
+            <summary>  
+            创建POST方式的HTTP请求  
+            </summary>  
+            <param name="url">请求的URL</param>  
+            <param name="parameters">随同请求POST的参数名称及参数值字典</param>  
+            <param name="timeout">请求的超时时间</param>  
+            <param name="userAgent">请求的客户端浏览器信息，可以为空</param>  
+            <param name="requestEncoding">发送HTTP请求时所用的编码</param>  
+            <param name="cookies">随同HTTP请求发送的Cookie信息，如果不需要身份验证可以为空</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.SubString(System.String,System.Int32)">
+            <summary>
+            格式化字符串,取字符串前 strLength 位
+            计算字符串长度。汉字两个字节，字母一个字节
+            </summary>
+            <param name="demand">原字符串</param>
+            <param name="length">截取的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.SubString(System.String,System.Int32,System.String)">
+            <summary>
+            格式化字符串,取字符串前 strLength 位
+            计算字符串长度。汉字两个字节，字母一个字节
+            </summary>
+            <param name="demand">原字符串</param>
+            <param name="length">截取的长度</param>
+            <param name="substitute">小尾巴</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.Nohtml(System.String)">
+            <summary>
+            移除字符串的HTML代码
+            </summary>
+            <param name="htmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.Nohtml(System.String,System.Int32)">
+            <summary>
+            移除字符串的HTML代码，返回指定长度的字符.
+            </summary>
+            <param name="Htmlstr"></param>
+            <param name="leng"></param>
+            <returns></returns>
+        </member>
+        <member name="F:API_MES.Mappers.Const.SecurityKey">
+            <summary>
+            这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="F:API_MES.Mappers.Const.Domain">
+            <summary>
+            站点地址
+            </summary>
+        </member>
+        <member name="F:API_MES.Mappers.Const.ValidAudience">
+            <summary>
+            受理人，之所以弄成可变的是为了用接口动态更改这个值以模拟强制Token失效
+            真实业务场景可以在数据库或者redis存一个和用户id相关的值，生成token和验证token的时候获取到持久化的值去校验
+            如果重新登陆，则刷新这个值
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.ManaRole.IsUserToRole(System.String,System.String)">
+            <summary>
+            检查是用户是否属于此角色
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">角色名</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Encrypt(System.String,System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="Text">要加密的文本</param>
+            <param name="sKey">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Decrypt(System.String,System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="Text"></param>
+            <param name="sKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Md5Hash(System.String)">
+            <summary>
+            32位MD5加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.NLogHelp">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteInfo(System.String)">
+            <summary>
+            输出操作日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteError(System.String)">
+            <summary>
+            输出错误日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteDebug(System.String)">
+            <summary>
+            输出异常日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.Debug(System.String,System.String)">
+            向日志文件写入调试信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="M:API_MES.NLogHelp.Info(System.String,System.String)">
+            向日志文件写入运行时信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="M:API_MES.NLogHelp.Error(System.String,System.String)">
+            向日志文件写入出错信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="F:API_MES.NLogHelp.ob">
+            实际的写日志操作
+            @param type 日志记录类型
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="P:API_MES.Model.FQA_MIDTIME.ITEMCODE">
+            <summary>
+            学生学号
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.MusicDetails">
+            <summary>
+            获取音乐详细信息
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicSmall">
+            <summary>
+            音乐封面1
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicBig">
+            <summary>
+            音乐封面2
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicRadio">
+            <summary>
+            音乐封面3
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.MusicPlayInfo">
+            <summary>
+            获取音乐链接信息
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.LrcLink">
+            <summary>
+            歌词文件
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.Time">
+            <summary>
+            播放时长
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.SongLink">
+            <summary>
+            音乐链接
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.Format">
+            <summary>
+            音乐格式
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.size">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.SongId">
+            <summary>
+            歌曲id
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.SongName">
+            <summary>
+            歌曲名称
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.AlbumName">
+            <summary>
+            所属专辑
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.ArtistName">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.PageParams">
+            <summary>
+            分页参数
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Keyword">
+            <summary>
+            音乐关键词
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Current">
+            <summary>
+            获取当前页
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Size">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.Student.UserId">
+            <summary>
+            学生学号
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.Student.Name">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.SYSTUDEN.OB">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.SYS_DEPARTMENT">
+            <summary>
+            组织机构表
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.DepartmentId">
+            <summary>
+            单位GUID 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuName">
+            <summary>
+            单位简称 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuFullName">
+            <summary>
+            单位全称 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuCode">
+            <summary>
+            单位代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.HierarchyCode">
+            <summary>
+            层级代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ParentGuid">
+            <summary>
+            父级GUID 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.WebSite">
+            <summary>
+            网址 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Fax">
+            <summary>
+            传真 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CompanyAddr">
+            <summary>
+            公司地址 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Charter">
+            <summary>
+            营业执照 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CorporationDeputy">
+            <summary>
+            法人代表 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CreatedOn">
+            <summary>
+            创建时间 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ModifiedOn">
+            <summary>
+            修改时间 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CreatedBy">
+            <summary>
+            创建人 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Comments">
+            <summary>
+            说明 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ModifiedBy">
+            <summary>
+            修改人 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.IsEndCompany">
+            <summary>
+            是否末级公司 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.IsCompany">
+            <summary>
+            是否公司 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuLevel">
+            <summary>
+            层级数 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuType">
+            <summary>
+            组织类型 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.OrderCode">
+            <summary>
+            排序代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.OrderHierarchyCode">
+            <summary>
+            排序层级代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.AreaCode">
+            <summary>
+            单位所属区域编码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.UserTable.USNAME">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="T:API_MES.Servise.PolicyRequirement">
+            <summary>
+            权限承载实体
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.PolicyRequirement.UserPermissions">
+            <summary>
+            用户权限集合
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.PolicyRequirement.DeniedAction">
+            <summary>
+            无权限action
+            </summary>
+        </member>
+        <member name="M:API_MES.Servise.PolicyRequirement.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:API_MES.Servise.UserPermission">
+            <summary>
+            用户权限承载实体
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.UserPermission.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.UserPermission.Url">
+            <summary>
+            请求Url
+            </summary>
+        </member>
+    </members>
+</doc>

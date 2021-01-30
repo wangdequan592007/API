@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_MES", "API_MES.csproj", "{537D193C-8F4D-4DDF-9BBE-CBEAE270191A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_ORACLE", "..\EF_ORACLE\EF_ORACLE.csproj", "{1851E2F2-B1D4-49E7-9A60-AF5DF2F85C47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_SQL", "..\EF_SQL\EF_SQL.csproj", "{7D616096-CDE2-4FD1-BC56-09D838158A56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7086BA1E-6B67-4944-9895-CE4382278970}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.filenesting.json = .filenesting.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_COM", "..\API_COM\API_COM.csproj", "{28E2B2D9-8E5D-4C54-A224-E5643EAAA54F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{537D193C-8F4D-4DDF-9BBE-CBEAE270191A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537D193C-8F4D-4DDF-9BBE-CBEAE270191A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537D193C-8F4D-4DDF-9BBE-CBEAE270191A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537D193C-8F4D-4DDF-9BBE-CBEAE270191A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1851E2F2-B1D4-49E7-9A60-AF5DF2F85C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1851E2F2-B1D4-49E7-9A60-AF5DF2F85C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1851E2F2-B1D4-49E7-9A60-AF5DF2F85C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1851E2F2-B1D4-49E7-9A60-AF5DF2F85C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D616096-CDE2-4FD1-BC56-09D838158A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D616096-CDE2-4FD1-BC56-09D838158A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D616096-CDE2-4FD1-BC56-09D838158A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D616096-CDE2-4FD1-BC56-09D838158A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E2B2D9-8E5D-4C54-A224-E5643EAAA54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E2B2D9-8E5D-4C54-A224-E5643EAAA54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E2B2D9-8E5D-4C54-A224-E5643EAAA54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E2B2D9-8E5D-4C54-A224-E5643EAAA54F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D32A9BC4-E898-458C-A79A-8D7EDE606E8F}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.StandardHeader = $4
+		$0.VersionControlPolicy = $5
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_COM</name>
+    </assembly>
+    <members>
+        <member name="M:API_COM.Helper.jsonHelp.IsJson(System.String)">
+            <summary>
+            判断一个字符串是不是合法的json字符串
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.jsonHelp.IsJsonStart(System.String@)">
+            <summary>
+            是否是json开头的字符串
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.jsonHelp.GetValueLength(System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取值的长度（当Json值嵌套以"{"或"["开头时）
+            </summary>
+        </member>
+        <member name="T:API_COM.Helper.jsonHelp.CharState">
+            <summary>
+            字符状态
+            </summary>
+        </member>
+        <member name="F:API_COM.Helper.jsonHelp.CharState.arrayStart">
+            <summary>
+            数组开始【仅第一开头才算】，值嵌套的以【childrenStart】来标识。
+            </summary>
+        </member>
+        <member name="F:API_COM.Helper.jsonHelp.CharState.state">
+            <summary>
+            【0 初始状态，或 遇到“,”逗号】；【1 遇到“：”冒号】
+            </summary>
+        </member>
+        <member name="F:API_COM.Helper.jsonHelp.CharState.keyStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="F:API_COM.Helper.jsonHelp.CharState.valueStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="M:API_COM.Helper.jsonHelp.SetCharState(System.Char,API_COM.Helper.jsonHelp.CharState@)">
+            <summary>
+            设置字符状态(返回true则为关键词，返回false则当为普通字符处理）
+            </summary>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteDataTable(System.String,System.String)">
+            <summary>
+            执行SQL查询,返回datatable
+            </summary>
+            <param name="strConnString">oracle连接字符串</param>
+            <param name="strSql">sql语句</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteDataSet(System.Data.CommandType,System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary>  
+            执行数据库查询操作,返回DataSet类型的结果集  
+            </summary>  
+            <param name="cmdText">Oracle存储过程名称或PL/SQL命令</param>  
+            <param name="commandParameters">命令参数集合</param>  
+            <returns>当前查询操作返回的DataSet类型的结果集</returns> 
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.PrepareCommand(Oracle.ManagedDataAccess.Client.OracleCommand,Oracle.ManagedDataAccess.Client.OracleConnection,Oracle.ManagedDataAccess.Client.OracleTransaction,System.Data.CommandType,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary>  
+            执行数据库命令前的准备工作  
+            </summary>  
+            <param name="command">Command对象</param>  
+            <param name="connection">数据库连接对象</param>  
+            <param name="trans">事务对象</param>  
+            <param name="cmdType">Command类型</param>  
+            <param name="cmdText">Oracle存储过程名称或PL/SQL命令</param>  
+            <param name="commandParameters">命令参数集合</param> 
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteDataTable(System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary>
+            带参数的查询，返回DATATABLE;
+            </summary>
+            <param name="connstring">连接字符串</param>
+            <param name="sql">sql语句</param>
+            <param name="param">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteDataSet(System.String,System.String)">
+            <summary>
+            执行SQL查询,返回dataset
+            </summary>
+            <param name="connstring"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteDataSet(System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary> 
+            返回查询结果，传出查询参数；
+            </summary>
+            <param name="connstring"></param>
+            <param name="sql"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.SelectValue(System.String,System.String)">
+            <summary>
+            获取单个值
+            </summary>
+            <param name="connstring"></param>
+            <param name="selectSQL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteNonQuery(System.String,System.String)">
+            <summary>
+            执行语句
+            </summary>
+            <param name="connstring"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteNonQueryRstring(System.String,System.String)">
+            <summary>
+            执行语句
+            </summary>
+            <param name="connstring"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteNonQuery(System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary> 执行带参数的存储过程
+            
+            </summary>
+            <param name="name">存储名称</param>
+            <param name="paramList">列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteProc(System.String,System.String,System.Int32,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary> 
+            执行有返回值的存储过程；
+            </summary>
+            <param name="connstring"></param> 连接数据库参数；
+            <param name="name"></param>    存储过程名字
+            <param name="nreval"></param>   第几个是返回值
+            <param name="param"></param>     数组变量；
+            <returns></returns>           返回值；小于0为失败；
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteFunc(System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])">
+            <summary> 
+            执行有返回值的存储过程；
+            </summary>
+            <param name="connstring"></param> 连接数据库参数；
+            <param name="name"></param>    存储过程名字
+            <param name="nreval"></param>   第几个是返回值
+            <param name="param"></param>     数组变量；
+            <returns></returns>           返回值；小于0为失败；
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.Update(System.String,System.String,System.Data.Common.DbParameter[])">
+            <summary> ；
+            带有参数的SQL语句
+            </summary>
+            <param name="connstring">连接字符串</param>
+            <param name="sql">SQL语句</param>
+            <param name="paramList">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_COM.Helper.OracleHelper.ExecuteNonQuery(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            批量更新数据库
+            </summary>
+            <param name="connstring">连接字符串</param>
+            <param name="sqls">多个SQL语句</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:API_COM.Helper.OracleHelper.ExecuteFunc2(System.String,System.String,Oracle.ManagedDataAccess.Client.OracleParameter[])" -->
+        <member name="M:API_COM.Helper.OracleHelper.ExistKey(System.String,System.String,System.String,System.String)">
+            <summary>   判断主键是否重复；
+            
+            </summary>
+            <param name="connstring">连接字符串</param>
+            <param name="table">表名称</param>  
+            <param name="key">主关键字，字符类型</param>
+            <param name="keyvalue">值</param>
+            <returns>TRUE为不存在，可以添加</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1487 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_MES</name>
+    </assembly>
+    <members>
+        <member name="M:API_MES.Controllers.AuthenticateController.GetAccessToken(API_MES.Entities.SessionUser)">
+            <summary>
+            通过SessionUser获取AccessToken
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.AuthenticateController.Get(System.String,System.String)">
+            <summary>
+            login
+            </summary>
+            <param name="userName">只能用user或者</param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.AuthenticateController.CheckAccount(System.String,System.String,System.String@)">
+            <summary>
+            模拟登陆校验，因为是模拟，所以逻辑很‘模拟’
+            </summary>
+            <param name="userName"></param>
+            <param name="pwd"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.DefaultController.Get2">
+            该接口用Authorize特性做了权限校验，如果没有通过权限校验，则http返回状态码为401
+            调用该接口的正确姿势是：
+            1.登陆，调用api/Auth接口获取到token
+            2.调用该接口 api/value2 在请求的Header中添加参数 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNTYwMzM1MzM3IiwiZXhwIjoxNTYwMzM3MTM3LCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemhhbmdzYW4iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAifQ.1S-40SrA4po2l4lB_QdzON_G5ZNT4P_6U25xhTcl7hI
+            Bearer后面有空格，且后面是第一步中接口返回的token值
+            
+        </member>
+        <member name="M:API_MES.Controllers.DefaultController.Get3">
+             这个接口必须用admin
+            
+        </member>
+        <member name="T:API_MES.Controllers.MESController">
+            <summary>
+            MESController
+            </summary>
+        </member>
+        <member name="M:API_MES.Controllers.MESController.Get">
+            <summary>
+            测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.MESController.GetODM_TESTFAILNUM(System.String)">
+            <summary>GetODM_SIDKEYCTBYMODEL
+            20201123  测试失败次数
+            </summary>
+            <param name="STATION"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.MESController.IS_ODMLOCKMO(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            /
+            </summary>
+            <param name="MO"></param>
+            <param name="LINE"></param>
+            <param name="ISLOCK"></param>
+            <param name="I_USER"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.PictureController.#ctor(Microsoft.Extensions.Options.IOptions{API_MES.Options.MongodbHostOptions},Microsoft.Extensions.Options.IOptions{API_MES.Options.PictureOptions},Microsoft.AspNetCore.Hosting.IWebHostEnvironment,API_MES.Servise.IMesRepository,API_MES.Servise.OtherInterface)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="mongodbHostOptions">MongodbHost信息</param>
+            <param name="pictureOptions">图片选项</param>
+        </member>
+        <member name="M:API_MES.Controllers.PictureController.UploadPhotos(Microsoft.AspNetCore.Http.IFormFileCollection)">
+            <summary>
+            接口上传图片方法
+            </summary>
+            <param name="fileDtos">文件传输对象,传过来的json数据</param>
+            <returns>上传结果</returns>
+        </member>
+        <member name="M:API_MES.Controllers.RepairController.G_PressureTime(System.String)">
+            <summary>
+            静置时间
+            </summary>
+            <param name="code"></param>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="F:API_MES.Controllers.XlsxController._hostingEnvironment">
+            <summary>
+            通过依赖注入获取HostingEnvironment，对应可以获取程序的相关目录及属性。
+            </summary>
+        </member>
+        <member name="M:API_MES.Controllers.XlsxController.GetTuple">
+            <summary>
+            公用路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Controllers.XlsxController.PostExportData">
+             
+        </member>
+        <member name="M:API_MES.Controllers.XlsxController.ExamRoomExport">
+            
+            5.2、考场总表导出   可以
+            
+        </member>
+        <member name="M:API_MES.Data.DapperHelper.QueryFirst``1(System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            单个查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数</param>
+            <param name="transaction">事务</param>
+            <param name="commandTimeout">超时时间</param>
+            <param name="commandType">command类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Data.DapperHelper.Query``1(System.String,System.Object,System.Data.IDbTransaction,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            多个查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sql">sql语句</param>
+            <param name="param">参数</param>
+            <param name="transaction">事务</param>
+            <param name="buffered">缓冲/缓存</param>
+            <param name="commandTimeout">超时时间</param>
+            <param name="commandType">command类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.Dtos.FileDtos">
+            <summary>
+            yilezhu
+            2018.7.10
+            文件上传的信息
+            </summary>
+        </member>
+        <member name="P:API_MES.Dtos.FileDtos.Type">
+            <summary>
+            文件类型
+            image/file/video
+            </summary>
+        </member>
+        <member name="P:API_MES.Dtos.FileDtos.Filename">
+            <summary>
+            文件名称，包含扩展名
+            </summary>
+        </member>
+        <member name="P:API_MES.Dtos.FileDtos.Base64String">
+            <summary>
+            base64String
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfig.SigningCredentials">
+            <summary>
+            用于加密的密钥对象
+            </summary>
+        </member>
+        <member name="M:API_MES.Entities.AuthConfig.Init(API_MES.Entities.AuthConfigModel)">
+            <summary>
+            初始化
+            </summary>
+            <param name="authModel">配置类</param>
+        </member>
+        <member name="M:API_MES.Entities.AuthConfig.GetTokenValidationParameters">
+            <summary>
+            获取用户 Token 配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.SecurityKey">
+            <summary>
+            加密 Token 的密钥
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.Audience">
+            <summary>
+            订阅人
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.Issuer">
+            <summary>
+            发行人
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.TimeSpan">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.IsDeniedAction">
+            <summary>
+            权限不足时是否跳转到失败页面
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.DeniedAction">
+            <summary>
+            验证失败时跳转到此API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.IsLoginAction">
+            <summary>
+            未携带验证信息是否跳转到登录页面
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.LoginAction">
+            <summary>
+            未携带任何身份信息时时跳转到登陆API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthConfigModel.scheme">
+            <summary>
+            事件传递对象
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.TokenEbnormal">
+            <summary>
+            客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.TokenIssued">
+            <summary>
+            令牌解码后，issuer 或 audience不正确
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.AuthenticateScheme.NoPermissions">
+            <summary>
+            用户所属的角色中，均无访问API的权限，即无访问此API的权限
+            </summary>
+        </member>
+        <member name="T:API_MES.Entities.ResponseToken">
+            <summary>
+            标准Token响应
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Access_Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Expires_In">
+            <summary>
+            有效时间(秒)
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.ResponseToken.Token_Type">
+            <summary>
+            Token类型(使用jwt)
+            </summary>
+        </member>
+        <member name="M:API_MES.Entities.RoleService.UpdateRole">
+            <summary>
+            用于加载角色禾API
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.UserModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:API_MES.Entities.UserModel.BeRoles">
+            <summary>
+            所属角色
+            </summary>
+        </member>
+        <member name="T:API_MES.Helper.Base64Helper">
+            <summary>
+            yilezhu
+            2018.7.10
+            Base64帮助类
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.Base64Helper.IsBase64String(System.String)">
+            <summary>
+            是否base64字符串
+            </summary>
+            <param name="base64Str">要判断的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.Base64Helper.IsBase64String(System.String,System.Byte[]@)">
+            <summary>
+            是否base64字符串
+            </summary>
+            <param name="base64Str">要判断的字符串</param>
+            <param name="bytes">字符串转换成的字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.Base64Helper.GetSuffixFromBase64Str(System.String)">
+            <summary>
+            根据base64字符串获取文件后缀（图片格式）
+            </summary>
+            <param name="base64Str">base64</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.Base64Helper.FileToBase64(System.IO.Stream)">
+            <summary>
+             文件转换成Base64字符串
+            </summary>
+            <param name="fs">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.Base64Helper.Base64ToFileAndSave(System.String,System.String)">
+            <summary>
+            Base64字符串转换成文件
+            </summary>
+            <param name="strInput">base64字符串</param>
+            <param name="fileName">保存文件的绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="F:API_MES.Helper.DataTableExtensions.RowNoColumnName">
+            <summary>
+            序号列列名
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            转化一个DataTable
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary>
+            转化一个DataTable
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="hasRowNo">是否添加行号</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            转化一个DataTable
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="colNames"></param>
+            <param name="hasRowNo">是否添加行号</param>
+            <returns></returns> 
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            转化一个DataTable
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="colNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            将泛型集合类转换成DataTable
+            </summary>
+            <typeparam name="T">集合项类型</typeparam>
+            <param name="list">集合</param>
+            <returns>数据集(表)</returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTable``1(System.Collections.Generic.IList{``0},System.String[])">
+            <summary>
+            将泛型集合类转换成DataTable
+            </summary>
+            <typeparam name="T">集合项类型</typeparam>
+            <param name="list">集合</param>
+            <param name="propertyName">需要返回的列的列名</param>
+            <returns>数据集(表)</returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToDataTableTow(System.Collections.IList)">
+            <summary>
+            将集合类转换成DataTable
+            </summary>
+            <param name="list">集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.ToList``1(System.Data.DataTable)">
+            <summary>
+            DataTable 转换为List 集合
+            </summary>
+            <typeparam name="TResult">类型</typeparam>
+            <param name="dt">DataTable</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.FillDataTable2(System.Collections.Generic.List{NPOI.SS.Formula.Functions.T})">
+            <summary>
+            实体类转换成DataTable
+            </summary>
+            <param name="modelList">实体类列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.DataTableExtensions.CreateData2(NPOI.SS.Formula.Functions.T)">
+            <summary>
+            根据实体类得到表结构
+            </summary>
+            <param name="model">实体类</param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.Helper.ExcelConfig">
+            <summary>
+            描 述：Excel导入导出设置
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.ForeColor">
+            <summary>
+            前景色
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.Background">
+            <summary>
+            背景色
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.TitlePoint">
+            <summary>
+            标题字号
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.HeadPoint">
+            <summary>
+            列头字号
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.TitleHeight">
+            <summary>
+            标题高度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.HeadHeight">
+            <summary>
+            列标题高度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.TitleFont">
+            <summary>
+            标题字体
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.HeadFont">
+            <summary>
+            列头字体
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.IsAllSizeColumn">
+            <summary>
+            是否按内容长度来适应表格宽度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelConfig.ColumnEntity">
+            <summary>
+            列设置
+            </summary>
+        </member>
+        <member name="T:API_MES.Helper.ExcelGridModel">
+            <summary>
+            描 述：表格属性模型
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.name">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.label">
+            <summary>
+            excel列名
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.align">
+            <summary>
+            对其方式
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.height">
+            <summary>
+            高度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ExcelGridModel.hidden">
+            <summary>
+            是否隐藏
+            </summary>
+        </member>
+        <member name="T:API_MES.Helper.ColumnModel">
+            <summary>
+            描 述：Excel导入导出列设置模型
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Column">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.ExcelColumn">
+            <summary>
+            Excel列名
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.ForeColor">
+            <summary>
+            前景色
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Background">
+            <summary>
+            背景色
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Font">
+            <summary>
+            字体
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Point">
+            <summary>
+            字号
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.ColumnModel.Alignment">
+             <summary>
+            对齐方式
+            left 左
+            center 中间
+            right 右
+            fill 填充
+            justify 两端对齐
+            centerselection 跨行居中
+            distributed
+             </summary>
+        </member>
+        <member name="T:API_MES.Helper.ExcelHelper">
+            <summary>
+            描 述：NPOI Excel DataTable操作类
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelDownload``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{API_MES.Helper.ExcelGridModel},System.String)">
+            <summary>
+            Excel导出下载
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="list">数据源</param>
+            <param name="columnJson">导出列</param>
+            <param name="fileName">下载文件名称</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelDownload(System.Data.DataTable,System.Collections.Generic.IEnumerable{API_MES.Helper.ExcelGridModel},System.String)">
+            <summary>
+            Excel导出下载
+            </summary>
+            <param name="dtSource">DataTable数据源</param>
+            <param name="excelConfig">导出设置包含文件名、标题、列设置</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelDownload(System.Data.DataTable,API_MES.Helper.ExcelConfig,System.String)">
+            <summary>
+            Excel导出下载
+            </summary>
+            <param name="dtSource">DataTable数据源</param>
+            <param name="excelConfig">导出设置包含文件名、标题、列设置</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelExportToFile(System.Data.DataTable,API_MES.Helper.ExcelConfig,System.String)">
+            <summary>
+            DataTable导出到Excel文件 Export()
+            </summary>
+            <param name="dtSource">DataTable数据源</param>
+            <param name="excelConfig">导出设置包含文件名、标题、列设置</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExportMemoryStream(System.Data.DataTable,API_MES.Helper.ExcelConfig)">
+            <summary>
+            DataTable导出到Excel的MemoryStream Export()
+            </summary>
+            <param name="dtSource">DataTable数据源</param>
+            <param name="excelConfig">导出设置包含文件名、标题、列设置</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelImport(System.String)">
+            <summary>
+            读取excel ,默认第一行为标头
+            </summary>
+            <param name="strFileName">excel文档路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelImport(System.String,System.Int32)">
+            <summary>
+            读取excel ,默认第一行为标头
+            </summary>
+            <param name="strFileName">excel文档路径</param>
+            <param name="headerRowNo">标题行号，以0开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelImport(System.IO.Stream,System.String)">
+            <summary>
+            读取excel ,默认第一行为标头
+            </summary>
+            <param name="fileStream">文件数据流</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ExcelImport(System.IO.Stream,System.String,System.Int32)">
+            <summary>
+            读取excel ,默认第一行为标头
+            </summary>
+            <param name="fileStream">文件数据流</param>
+            <param name="headerRowNo">标题行号从0开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.ReadSheetToDataTable(System.Int32,NPOI.SS.UserModel.ISheet)">
+            <summary>
+            从sheet中读取数据到DataTable
+            </summary>
+            <param name="headerRowNo">标题行号（数据行号=标题行号+1）</param>
+            <param name="sheet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.getAlignment(System.String)">
+            <summary>
+            设置对齐方式
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.JointXls(System.String)">
+            <summary>
+            如果文件名中没有后缀名，增加文件后缀名
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.Helper.ExcelHelper.MIMEType">
+            <summary>
+            MIME文件类型
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ExcelHelper.Excel">
+            <summary>
+            Excel文件 Content-Type
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.Export(System.Collections.Generic.Dictionary{System.String,System.Data.DataTable},System.String,System.Tuple{System.String,System.String}@)">
+            <summary>
+            Excel导出
+            </summary>
+            <param name="keyValuePairs">字典表【名称，数据】</param>
+            <param name="sWebRootFolder">网站根文件夹</param>
+            <param name="tuple">item1:The virtual path of the file to be returned.|item2:The Content-Type of the file</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelper.Import(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String@,System.Boolean)">
+            <summary>
+            Excel导入
+            </summary>
+            <param name="excelFile">Excel文件</param>
+            <param name="sWebRootFolder">文件存储路径</param>
+             <param name="content">显示内容</param>
+            <param name="isShow">是否显示内容</param>
+        </member>
+        <member name="T:API_MES.Helper.ExcelHelpers">
+            <summary>
+            Excel帮助类
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelpers.ExcelToDataTableFormPath(System.Boolean,System.String,System.Int32)">
+            <summary>
+            将Excel以文件流转换DataTable
+            </summary>
+            <param name="hasTitle">是否有表头</param>
+            <param name="path">文件路径</param>
+            <param name="tableindex">文件簿索引</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelpers.ExcelToDataTableFormStream(System.Boolean,System.IO.Stream,System.Int32)">
+            <summary>
+            将Excel以文件流转换DataTable
+            </summary>
+            <param name="hasTitle">是否有表头</param>
+            <param name="stream">文件流</param>
+            <param name="tableindex">文件簿索引</param>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelpers.GetDataTableToByte(System.Data.DataTable,System.Boolean)">
+            <summary>
+            将DaTaTable转成byte[]类型
+            </summary>
+            <param name="dt"></param>
+            <param name="hasTitle">是否有表头</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.ExcelHelpers.ListToExcel``1(System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            类集合，导出到Excel，返回excel文件名
+            </summary>
+            <typeparam name="T">类</typeparam>
+            <param name="tList">List集合</param>
+            <param name="filePath">存放文件目录</param>
+            <returns>excel文件名</returns>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.CommonObjectSuccessCode">
+            <summary>
+            通用成功编码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.CommonObjectSuccessMsg">
+            <summary>
+            通用操作成功信息
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.CommonModelStateInvalidCode">
+            <summary>
+            通用Form验证失败错误码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.CommonModelStateInvalidMsg">
+            <summary>
+            通用Form验证失败错误码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileTypeInvalidCode">
+            <summary>
+            文件类型参数错误代码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileTypeInvalidMsg">
+            <summary>
+            文件类型参数错误信息
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileInvalidCode">
+            <summary>
+            不支持此文件类型代码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileInvalidMsg">
+            <summary>
+            不支持此文件类型代码信息
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileNotFoundCode">
+            <summary>
+            不支持此文件类型代码
+            </summary>
+        </member>
+        <member name="F:API_MES.Helper.ResultCodeAddMsgKeys.HttpFileNotFoundMsg">
+            <summary>
+            不支持此文件类型代码信息
+            </summary>
+        </member>
+        <member name="T:API_MES.Helper.SFTPHelper">
+            <summary>
+            SFTP操作类
+            </summary>
+        </member>
+        <member name="P:API_MES.Helper.SFTPHelper.Connected">
+            <summary>
+            SFTP连接状态
+            </summary>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="ip">IP</param>
+            <param name="port">端口</param>
+            <param name="user">用户名</param>
+            <param name="pwd">密码</param>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Connect">
+            <summary>
+            连接SFTP
+            </summary>
+            <returns>true成功</returns>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Disconnect">
+            <summary>
+            断开SFTP
+            </summary> 
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Put(System.String,System.String)">
+            <summary>
+            SFTP上传文件
+            </summary>
+            <param name="localPath">本地路径</param>
+            <param name="remotePath">远程路径</param>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Get(System.String,System.String)">
+            <summary>
+            SFTP获取文件
+            </summary>
+            <param name="remotePath">远程路径</param>
+            <param name="localPath">本地路径</param>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Delete(System.String)">
+            <summary>
+            删除SFTP文件 
+            </summary>
+            <param name="remoteFile">远程路径</param>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.GetFileList(System.String,System.String)">
+            <summary>
+            获取SFTP文件列表
+            </summary>
+            <param name="remotePath">远程目录</param>
+            <param name="fileSuffix">文件后缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Helper.SFTPHelper.Move(System.String,System.String)">
+            <summary>
+            移动SFTP文件
+            </summary>
+            <param name="oldRemotePath">旧远程路径</param>
+            <param name="newRemotePath">新远程路径</param>
+        </member>
+        <member name="T:API_MES.Mappers.EncryptionHash">
+            <summary>
+            用于加密生成
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetByHashString(System.String,System.Char[])">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="clearChar">需要去除的特殊字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetTokenSecurityKey(System.String,System.String)">
+            <summary>
+            将字符串生成密钥
+            </summary>
+            <param name="key">字符串</param>
+            <param name="encryptionType">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetByHashString(System.String)">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成jwt令牌
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成 JwtSecurityToken
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns>JwtSecurityToken</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtTokenDynamic(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>匿名类型</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtResponseToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>CZGL.Auth.Models。ResponseToken</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildJwtToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            直接生成 Token
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>Token字符串</returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.BuildClaims(System.String,System.String)">
+            <summary>
+            生成身份信息
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">登录时的角色</param>
+            <param name="audience">订阅者</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetIdentity(System.Security.Claims.Claim[])">
+            <summary>
+            生成用户标识
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.IsCanReadToken(System.String)">
+            <summary>
+            Token是否是符合要求的标准 Json Web 令牌
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetJwtSecurityToken(System.String)">
+            <summary>
+            从Token解密出JwtSecurityToken,JwtSecurityToken : SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.EncryptionHash.GetSecurityToken(System.String)">
+            <summary>
+            从 Token 解密出SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.Mappers.Http">
+            <summary>  
+            有关HTTP请求的辅助类  
+            </summary>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.CreateGetHttpResponse(System.String,System.Nullable{System.Int32},System.String,System.Net.CookieCollection)">
+            <summary>  
+            创建GET方式的HTTP请求  
+            </summary>  
+            <param name="url">请求的URL</param>  
+            <param name="timeout">请求的超时时间</param>  
+            <param name="userAgent">请求的客户端浏览器信息，可以为空</param>  
+            <param name="cookies">随同HTTP请求发送的Cookie信息，如果不需要身份验证可以为空</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.CreatePostHttpResponse(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Nullable{System.Int32},System.String,System.Text.Encoding,System.Net.CookieCollection)">
+            <summary>  
+            创建POST方式的HTTP请求  
+            </summary>  
+            <param name="url">请求的URL</param>  
+            <param name="parameters">随同请求POST的参数名称及参数值字典</param>  
+            <param name="timeout">请求的超时时间</param>  
+            <param name="userAgent">请求的客户端浏览器信息，可以为空</param>  
+            <param name="requestEncoding">发送HTTP请求时所用的编码</param>  
+            <param name="cookies">随同HTTP请求发送的Cookie信息，如果不需要身份验证可以为空</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:API_MES.Mappers.Http.SubString(System.String,System.Int32)">
+            <summary>
+            格式化字符串,取字符串前 strLength 位
+            计算字符串长度。汉字两个字节，字母一个字节
+            </summary>
+            <param name="demand">原字符串</param>
+            <param name="length">截取的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.SubString(System.String,System.Int32,System.String)">
+            <summary>
+            格式化字符串,取字符串前 strLength 位
+            计算字符串长度。汉字两个字节，字母一个字节
+            </summary>
+            <param name="demand">原字符串</param>
+            <param name="length">截取的长度</param>
+            <param name="substitute">小尾巴</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.Nohtml(System.String)">
+            <summary>
+            移除字符串的HTML代码
+            </summary>
+            <param name="htmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Http.Nohtml(System.String,System.Int32)">
+            <summary>
+            移除字符串的HTML代码，返回指定长度的字符.
+            </summary>
+            <param name="Htmlstr"></param>
+            <param name="leng"></param>
+            <returns></returns>
+        </member>
+        <member name="F:API_MES.Mappers.Const.SecurityKey">
+            <summary>
+            这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="F:API_MES.Mappers.Const.Domain">
+            <summary>
+            站点地址
+            </summary>
+        </member>
+        <member name="F:API_MES.Mappers.Const.ValidAudience">
+            <summary>
+            受理人，之所以弄成可变的是为了用接口动态更改这个值以模拟强制Token失效
+            真实业务场景可以在数据库或者redis存一个和用户id相关的值，生成token和验证token的时候获取到持久化的值去校验
+            如果重新登陆，则刷新这个值
+            </summary>
+        </member>
+        <member name="M:API_MES.Mappers.ManaRole.IsUserToRole(System.String,System.String)">
+            <summary>
+            检查是用户是否属于此角色
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">角色名</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Encrypt(System.String,System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="Text">要加密的文本</param>
+            <param name="sKey">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Decrypt(System.String,System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="Text"></param>
+            <param name="sKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Mappers.Md5Encrypt.Md5Hash(System.String)">
+            <summary>
+            32位MD5加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API_MES.NLogHelp">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteInfo(System.String)">
+            <summary>
+            输出操作日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteError(System.String)">
+            <summary>
+            输出错误日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.WriteDebug(System.String)">
+            <summary>
+            输出异常日志到NLog
+            </summary>
+        </member>
+        <member name="M:API_MES.NLogHelp.Debug(System.String,System.String)">
+            向日志文件写入调试信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="M:API_MES.NLogHelp.Info(System.String,System.String)">
+            向日志文件写入运行时信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="M:API_MES.NLogHelp.Error(System.String,System.String)">
+            向日志文件写入出错信息
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="F:API_MES.NLogHelp.ob">
+            实际的写日志操作
+            @param type 日志记录类型
+            @param className 类名
+            @param content 写入内容
+        </member>
+        <member name="P:API_MES.Model.FQA_MIDTIME.ITEMCODE">
+            <summary>
+            学生学号
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.MusicDetails">
+            <summary>
+            获取音乐详细信息
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicSmall">
+            <summary>
+            音乐封面1
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicBig">
+            <summary>
+            音乐封面2
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicDetails.SongPicRadio">
+            <summary>
+            音乐封面3
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.MusicPlayInfo">
+            <summary>
+            获取音乐链接信息
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.LrcLink">
+            <summary>
+            歌词文件
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.Time">
+            <summary>
+            播放时长
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.SongLink">
+            <summary>
+            音乐链接
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.Format">
+            <summary>
+            音乐格式
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicPlayInfo.size">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.SongId">
+            <summary>
+            歌曲id
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.SongName">
+            <summary>
+            歌曲名称
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.AlbumName">
+            <summary>
+            所属专辑
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.MusicSummary.ArtistName">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.PageParams">
+            <summary>
+            分页参数
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Keyword">
+            <summary>
+            音乐关键词
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Current">
+            <summary>
+            获取当前页
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.PageParams.Size">
+            <summary>
+            分页大小
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.Student.UserId">
+            <summary>
+            学生学号
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.Student.Name">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.SYSTUDEN.OB">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="T:API_MES.Model.SYS_DEPARTMENT">
+            <summary>
+            组织机构表
+            </summary>
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.DepartmentId">
+            <summary>
+            单位GUID 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuName">
+            <summary>
+            单位简称 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuFullName">
+            <summary>
+            单位全称 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuCode">
+            <summary>
+            单位代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.HierarchyCode">
+            <summary>
+            层级代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ParentGuid">
+            <summary>
+            父级GUID 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.WebSite">
+            <summary>
+            网址 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Fax">
+            <summary>
+            传真 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CompanyAddr">
+            <summary>
+            公司地址 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Charter">
+            <summary>
+            营业执照 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CorporationDeputy">
+            <summary>
+            法人代表 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CreatedOn">
+            <summary>
+            创建时间 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ModifiedOn">
+            <summary>
+            修改时间 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.CreatedBy">
+            <summary>
+            创建人 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.Comments">
+            <summary>
+            说明 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.ModifiedBy">
+            <summary>
+            修改人 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.IsEndCompany">
+            <summary>
+            是否末级公司 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.IsCompany">
+            <summary>
+            是否公司 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuLevel">
+            <summary>
+            层级数 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.BuType">
+            <summary>
+            组织类型 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.OrderCode">
+            <summary>
+            排序代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.OrderHierarchyCode">
+            <summary>
+            排序层级代码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.SYS_DEPARTMENT.AreaCode">
+            <summary>
+            单位所属区域编码 
+            </summary> 
+        </member>
+        <member name="P:API_MES.Model.UserTable.USNAME">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.IdentityServerOptions.ServerIP">
+            <summary>
+            授权服务器的Ip地址
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.IdentityServerOptions.ServerPort">
+            <summary>
+            授权服务器的端口号
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.IdentityServerOptions.IdentityScheme">
+            <summary>
+            access_token的类型，获取access_token的时候返回参数中的token_type一致
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.IdentityServerOptions.ResourceName">
+            <summary>
+            资源名称，认证服务注册的资源列表名称一致，
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.MongodbHostOptions.Connection">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.MongodbHostOptions.DataBase">
+            <summary>
+            库
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.MongodbHostOptions.Table">
+            <summary>
+            表
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.FileTypes">
+            <summary>
+            允许的文件类型
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.MaxSize">
+            <summary>
+            最大文件大小
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.ThumsizeW">
+            <summary>
+            缩略图宽度
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.ThumsizeH">
+            <summary>
+            缩略图高度
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.MakeThumbnail">
+            <summary>
+            是否缩略图
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.ThumbnailGuidKeys">
+            <summary>
+            缩略图主键keys
+            </summary>
+        </member>
+        <member name="P:API_MES.Options.PictureOptions.ImageBaseUrl">
+            <summary>
+            图片的基地址
+            </summary>
+        </member>
+        <member name="P:API_MES.Result.BaseResult.Errcode">
+            <summary>
+            结果编码
+            </summary>
+        </member>
+        <member name="P:API_MES.Result.BaseResult.Errmsg">
+            <summary>
+            结果消息 如果不成功，返回的错误信息
+            </summary>
+        </member>
+        <member name="M:API_MES.Result.BaseResult.#ctor">
+            <summary>
+            无参构造函数
+            </summary>
+        </member>
+        <member name="M:API_MES.Result.BaseResult.#ctor(System.Int32,System.String)">
+            <summary>
+            有参数构造函数
+            </summary>
+            <param name="_errcode"></param>
+            <param name="_errmsg"></param>
+        </member>
+        <member name="P:API_MES.Result.UploadEntity.Picguid">
+            <summary>
+            图片主键
+            </summary>
+        </member>
+        <member name="P:API_MES.Result.UploadEntity.Originalurl">
+            <summary>
+            原始图片地址
+            </summary>
+        </member>
+        <member name="P:API_MES.Result.UploadEntity.Thumburl">
+            <summary>
+            缩略图地址
+            </summary>
+        </member>
+        <member name="P:API_MES.Result.UploadResult.Data">
+            <summary>
+            上传实体数据
+            </summary>
+        </member>
+        <member name="T:API_MES.Servise.PolicyRequirement">
+            <summary>
+            权限承载实体
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.PolicyRequirement.UserPermissions">
+            <summary>
+            用户权限集合
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.PolicyRequirement.DeniedAction">
+            <summary>
+            无权限action
+            </summary>
+        </member>
+        <member name="M:API_MES.Servise.PolicyRequirement.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:API_MES.Servise.UserPermission">
+            <summary>
+            用户权限承载实体
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.UserPermission.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:API_MES.Servise.UserPermission.Url">
+            <summary>
+            请求Url
+            </summary>
+        </member>
+        <member name="M:API_MES.Servise.RepairRepository.G_XMDATEY(System.String)">
+            <summary>
+            每天更新
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Servise.RepairRepository.G_REPairDATa(System.String,System.String)">
+            <summary>
+            按时间更新
+            </summary>
+            <param name="code"></param>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_MES.Servise.SqlRepository.TotalWeeks(System.DateTime,System.DateTime,System.DayOfWeek)">
+            <summary> 
+            统计一段时间内有多少个星期几 
+            </summary> 
+            <param name="AStart">开始日期</param> 
+            <param name="AEnd">结束日期</param> 
+            <param name="AWeek">星期几</param> 
+            <returns>返回个数</returns> 
+        </member>
+    </members>
+</doc>

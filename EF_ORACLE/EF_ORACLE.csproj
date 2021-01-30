@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+   <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup> 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200109012425_DBCoreFirst.cs" />
+    <Compile Remove="Migrations\20200109012425_DBCoreFirst.Designer.cs" />
+    <Compile Remove="Migrations\20200109012620_DBCoreFirst.cs" />
+    <Compile Remove="Migrations\20200109012620_DBCoreFirst.Designer.cs" />
+    <Compile Remove="Migrations\20200109013442_DBCoreFirst.cs" />
+    <Compile Remove="Migrations\20200109013442_DBCoreFirst.Designer.cs" />
+    <Compile Remove="Model\T100.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.100" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="3.19.80" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\T100\" />
+  </ItemGroup>
+
+</Project>
