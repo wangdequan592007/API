@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -59,8 +59,48 @@ namespace API_COM.Controllers
         [SkipActionFilter]
         public IActionResult ExportTxt()
         {
-              
+
             return File(new byte[0], "text/plain", "welcome.txt");
+        }
+        [HttpGet]
+        [Route("GetportTxt")]
+        [SkipActionFilter]
+        public IActionResult GetportTxt(string dn, string UserID)
+        {
+            string warehouse = AppHelper.V_WAREHOUSE_IDEN(dn);
+            string warehouseid = AppHelper.V_WAREHOUSE_ID(dn);
+            string factory_id = AppHelper.MES_FACTORY_ID(UserID);
+            if (string.IsNullOrEmpty(factory_id))
+            {
+                factory_id = "ZN";
+            }
+            string Las = "WMS2021" + factory_id;
+            string LableNames = AppHelper.V_SCRIPT(Las);
+            if (string.IsNullOrWhiteSpace(LableNames))
+            {
+                var dTReturn = new DT_RETURN
+                {
+                    Success = false,
+                    Service = "GetportTxt",
+                    Msg = "请维护脚本:" + Las
+                };
+                return Ok(dTReturn);
+            }
+            if (string.IsNullOrEmpty(warehouse))
+            {
+                warehouse = "Null";
+            }
+            LableNames = LableNames.Replace("$DN$", dn);
+            LableNames = LableNames.Replace("$WAREHOUSE$", warehouse);
+            LableNames = LableNames.Replace("$WAREID$", warehouseid);
+            //WAREID
+            var dTReturn1 = new DT_RETURN
+            {
+                Success = true,
+                Service = "GetportTxt",
+                Msg = LableNames
+            };
+            return Ok(dTReturn1);
         }
         [HttpGet]
         [Route("WMS_ADRESSS")]
@@ -329,7 +369,7 @@ namespace API_COM.Controllers
             var T100MO = fm["T100MO"].ToString() == "" ? "" : fm["T100MO"].ToString().Trim();
             var V_PO = fm["V_PO"].ToString() == "" ? "" : fm["V_PO"].ToString().Trim();
             var V_POLINE = fm["V_POLINE"].ToString() == "" ? "" : fm["V_POLINE"].ToString().Trim();
-                V_POLINE = "10";
+            V_POLINE = "10";
             var V_PN = fm["V_PN"].ToString() == "" ? "" : fm["V_PN"].ToString().Trim();
             var V_CPN = fm["V_CPN"].ToString() == "" ? "" : fm["V_CPN"].ToString().Trim();
             var V_DESC = fm["V_DESC"].ToString() == "" ? "" : fm["V_DESC"].ToString().Trim();
@@ -454,8 +494,8 @@ namespace API_COM.Controllers
                 };
                 return Ok(dTReturn);
             }
-            var  ldnData = _cNCEInterface.WMS_DN_INFOR(dn); 
-             return Ok(ldnData);  
+            var ldnData = _cNCEInterface.WMS_DN_INFOR(dn);
+            return Ok(ldnData);
         }
         [HttpPost]
         [Route("WMS_NETCODE_DATA")]
@@ -474,7 +514,7 @@ namespace API_COM.Controllers
                 return Ok(dTReturn);
             }
             //IntPtr vlu = Marshal.StringToCoTaskMemUTF8(DN);
-            var ldnData = _cNCEInterface.WMS_NETCODE_DATA(DN,vSscc);
+            var ldnData = _cNCEInterface.WMS_NETCODE_DATA(DN, vSscc);
             return Ok(ldnData);
         }
         [HttpPost]
@@ -507,6 +547,93 @@ namespace API_COM.Controllers
             }
             var resQuit = _cNCEInterface.WMS_CK_CARTONID(vDn, cartonid, tycar, vPn);
             return Ok(resQuit);
+        }
+        [HttpPost]
+        [Route("WMS_CK_DNCATONID")]
+        public IActionResult WMS_CK_DNCATONID([FromForm] IFormCollection fm)
+        {
+            var vDn = fm["V_DN"].ToString() == "" ? "" : fm["V_DN"].ToString().Trim();
+            var v_PN = fm["V_PN"].ToString() == "" ? "" : fm["V_PN"].ToString().Trim();
+            var v_Model = fm["MODEL"].ToString() == "" ? "" : fm["MODEL"].ToString().Trim();
+            if (string.IsNullOrWhiteSpace(vDn))
+            {
+                DT_RETURN dT_RETURN = new DT_RETURN
+                {
+                    Success = false,
+                    Service = "WMS_CK_DNCATONID",
+                    Msg = "发货单不能为空!"
+                };
+                return Ok(dT_RETURN);
+            }
+            string Err = "";
+            if (v_Model == "0")
+            {
+                if (!AppHelper.V_CK_DNCATONID(vDn, ref Err))
+                {
+                    DT_RETURN dT_RETURN = new DT_RETURN
+                    {
+                        Success = false,
+                        Service = "WMS_CK_DNCATONID",
+                        Msg = Err
+                    };
+                    return Ok(dT_RETURN);
+                }
+                else
+                {
+                    DT_RETURN dT_RETURN = new DT_RETURN
+                    {
+                        Success = true,
+                        Service = "WMS_CK_DNCATONID",
+                        Msg = "PASS!"
+                    };
+                    return Ok(dT_RETURN);
+                }
+            }
+            else
+            {
+                if (!AppHelper.V_CK_DNCATONID(vDn, ref Err))
+                {
+                    DT_RETURN dT_RETURN = new DT_RETURN
+                    {
+                        Success = false,
+                        Service = "WMS_CK_DNCATONID",
+                        Msg = Err
+                    };
+                    return Ok(dT_RETURN);
+                }
+                else
+                {
+                    //栈板发货单绑定---
+                    string dn1 = AppHelper.Gt_DNbyPallet(v_PN);
+                    if (string.IsNullOrWhiteSpace(dn1))
+                    {
+                        DT_RETURN dT_RETURN2 = new DT_RETURN
+                        {
+                            Success = false,
+                            Service = "WMS_CK_DNCATONID",
+                            Msg = $"扫描栈板{v_PN}未绑定发货单号。"
+                        };
+                        return Ok(dT_RETURN2);
+                    }
+                    if (!dn1.Equals(vDn))
+                    {
+                        DT_RETURN dT_RETURN2 = new DT_RETURN
+                        {
+                            Success = false,
+                            Service = "WMS_CK_DNCATONID",
+                            Msg = $"扫描栈板绑定发货单号{dn1},与当前发货单不一致"
+                        };
+                        return Ok(dT_RETURN2);
+                    }
+                    DT_RETURN dT_RETURN = new DT_RETURN
+                    {
+                        Success = true,
+                        Service = "WMS_CK_DNCATONID",
+                        Msg = "PASS!"
+                    };
+                    return Ok(dT_RETURN);
+                }
+            }
         }
         [HttpPost]
         [Route("WMS_CK_TOTALCARTONID")]
@@ -644,13 +771,44 @@ namespace API_COM.Controllers
             return Ok(LDN_DATA);
         }
         [HttpPost]
+        [Route("WMS_PALCT_INFOR")]
+        public IActionResult WMS_PALCT_INFOR([FromForm] IFormCollection fm)
+        {
+            var V_DN = string.IsNullOrWhiteSpace(fm["V_DN"].ToString()) ? "" : fm["V_DN"].ToString().Trim();
+            var V_SSCC = string.IsNullOrWhiteSpace(fm["V_SSCC"].ToString()) ? "" : fm["V_SSCC"].ToString().Trim();
+            var ct = AppHelper.Gt_CtPalletBydn(V_DN, V_SSCC);
+            DT_RETURN dT_RETURN = new DT_RETURN
+            {
+                Success = true,
+                Service = "WMS_PALCT_INFOR",
+                Msg = ct
+            };
+            return Ok(dT_RETURN);
+        }
+
+        [HttpPost]
+        [Route("WMS_DNTYPE")]
+        public IActionResult WMS_DNTYPE([FromForm] IFormCollection fm)
+        {
+            var V_DN = string.IsNullOrWhiteSpace(fm["V_DN"].ToString()) ? "" : fm["V_DN"].ToString().Trim();
+            var V_SSCC = string.IsNullOrWhiteSpace(fm["V_SSCC"].ToString()) ? "" : fm["V_SSCC"].ToString().Trim();
+            var ct = AppHelper.Gt_DNTYPE(V_DN, V_SSCC);
+            DT_RETURN dT_RETURN = new DT_RETURN
+            {
+                Success = true,
+                Service = "WMS_PALCT_INFOR",
+                Msg = ct
+            };
+            return Ok(dT_RETURN);
+        }
+        [HttpPost]
         [Route("WMS_PALWEIGHT_IN")]
         public IActionResult WMS_PALWEIGHT_IN([FromForm] IFormCollection fm)
         {
             var V_PALLET = string.IsNullOrWhiteSpace(fm["V_PALLET"].ToString()) ? "" : fm["V_PALLET"].ToString().Trim();
-            var V_GW =string.IsNullOrWhiteSpace( fm["V_GW"].ToString()) ? "0" : fm["V_GW"].ToString().Trim();
-            var V_NW = string.IsNullOrWhiteSpace(fm["V_NW"].ToString()) ? "0" : fm["V_NW"].ToString().Trim(); 
-            var LDN_DATA = _cNCEInterface.WMS_PALWEIGHT_IN(V_PALLET, V_GW, V_NW); 
+            var V_GW = string.IsNullOrWhiteSpace(fm["V_GW"].ToString()) ? "0" : fm["V_GW"].ToString().Trim();
+            var V_NW = string.IsNullOrWhiteSpace(fm["V_NW"].ToString()) ? "0" : fm["V_NW"].ToString().Trim();
+            var LDN_DATA = _cNCEInterface.WMS_PALWEIGHT_IN(V_PALLET, V_GW, V_NW);
             return Ok(LDN_DATA);
         }
         [HttpPost]
@@ -696,6 +854,111 @@ namespace API_COM.Controllers
             return excelHeper.ExcelDownloadNPOI(rsVal, config, fileName);
         }
         [HttpPost]
+        [Route("PostExportDataHW")]
+        public IActionResult PostExportDataHW([FromForm] IFormCollection fm)
+        {
+            DataTable dataTable = new DataTable();
+            string Names = System.DateTime.Now.ToString("yyyyMMddHHmmss");
+            var V_DN = string.IsNullOrWhiteSpace(fm["V_DN"].ToString()) ? "" : fm["V_DN"].ToString().Trim();
+            var V_SSCC = string.IsNullOrWhiteSpace(fm["V_SSCC"].ToString()) ? "" : fm["V_SSCC"].ToString().Trim();
+            var CRT_USER = string.IsNullOrWhiteSpace(fm["CRT_USER"].ToString()) ? "" : fm["CRT_USER"].ToString().Trim();
+            var V_CODE = string.IsNullOrWhiteSpace(fm["V_CODE"].ToString()) ? "" : fm["V_CODE"].ToString().Trim();
+            var V_MSG = string.Empty;
+            var rsValTb = _cNCEInterface.GetHW_DATA(V_DN, V_SSCC, V_CODE, ref V_MSG);
+            if (rsValTb == null)
+            {
+                return Ok();
+            }
+            ExcelHelper excelHeper = new ExcelHelper();
+            List<ExcelGridModel> config = new List<ExcelGridModel>
+            {
+                new ExcelGridModel{name="PHYSICSNO",label="PhysicsNo", align="left",},
+                new ExcelGridModel{name="IMEI",label="IMEI", align="left",},
+                new ExcelGridModel{name="IMEI_1",label="IMEI_1", align="left",},
+                new ExcelGridModel{name="IMEI_2",label="IMEI_2", align="left",},
+                new ExcelGridModel{name="IMEI_3",label="IMEI_3", align="left",},
+                new ExcelGridModel{name="MEID",label="MEID", align="left",},
+                new ExcelGridModel{name="MEID_DEC",label="MEID_DEC", align="left",},
+                new ExcelGridModel{name="MEID_DEC_18",label="MEID_DEC_18", align="left",},
+                new ExcelGridModel{name="MEID_HEX",label="MEID_HEX", align="left",},
+                new ExcelGridModel{name="MEID_HEX_14",label="MEID_HEX_14", align="left",},
+                new ExcelGridModel{name="PESN_DEC",label="pESN_DEC", align="left",},
+                new ExcelGridModel{name="PESN_HEX",label="pESN_HEX", align="left",},
+                new ExcelGridModel{name="ESN_HEX2",label="ESN_HEX2", align="left",},
+                new ExcelGridModel{name="ESN_DEC2",label="ESN_DEC2", align="left",},
+                new ExcelGridModel{name="MAC_1",label="MAC_1", align="left",},
+                new ExcelGridModel{name="MAC_2",label="MAC_2", align="left",},
+                new ExcelGridModel{name="WIFI",label="WIFI", align="left",},
+                new ExcelGridModel{name="MAC",label="MAC", align="left",},
+                new ExcelGridModel{name="PCBA_BARCODE",label="PCBA_BARCODE", align="left",},
+                new ExcelGridModel{name="PRODUCT_BARCODE",label="PRODUCT_BARCODE", align="left",},
+                new ExcelGridModel{name="PACKING2",label="Packing2", align="left",},
+                new ExcelGridModel{name="PACKING3",label="Packing3", align="left",},
+                new ExcelGridModel{name="PACKING4",label="Packing4", align="left",},
+                new ExcelGridModel{name="SPECIAL_SN_ID",label="SPECIAL_SN_ID", align="left",},
+                new ExcelGridModel{name="SPECIAL_MID_ID",label="SPECIAL_MID_ID", align="left",},
+                new ExcelGridModel{name="SPECIAL_BIGCARTON_ID",label="SPECIAL_BIGCARTON_ID", align="left",},
+                new ExcelGridModel{name="SPECIAL_PALLET_ID",label="SPECIAL_PALLET_ID", align="left",},
+                new ExcelGridModel{name="PACKINGWEIGHT2",label="PackingWeight2", align="left",},
+                new ExcelGridModel{name="PACKINGWEIGHT3",label="PackingWeight3", align="left",},
+                new ExcelGridModel{name="ITEM_BOM",label="Item_BOM", align="left",},
+                new ExcelGridModel{name="COLOR",label="COLOR", align="left",},
+                new ExcelGridModel{name="SOFTWARE_VERSION",label="SOFTWARE_VERSION", align="left",},
+                new ExcelGridModel{name="PRODUCT_DATE",label="PRODUCT_DATE", align="left",},
+                new ExcelGridModel{name="COMMENTS",label="COMMENTS", align="left",},
+                new ExcelGridModel{name="BATTERY_SN",label="BATTERY_SN", align="left",},
+                new ExcelGridModel{name="BATTERYNO_A",label="BATTERYNO_A", align="left",},
+                new ExcelGridModel{name="BATTERYNO_B",label="BATTERYNO_B", align="left",},
+                new ExcelGridModel{name="CHARGERNO_A",label="CHARGERNO_A", align="left",},
+                new ExcelGridModel{name="NETCODE",label="NETCODE", align="left",},
+                new ExcelGridModel{name="NETCODE_VALIDITY",label="NETCODE_VALIDITY", align="left",},
+                new ExcelGridModel{name="EAN_UPC_CODE",label="EAN_UPC_CODE", align="left",},
+                new ExcelGridModel{name="NETWORK_ACCESS",label="Network_Access", align="left",},
+                new ExcelGridModel{name="IMEI_MEID",label="IMEI_MEID", align="left",},
+                new ExcelGridModel{name="MDN_RULE",label="MDN_RULE", align="left",},
+                new ExcelGridModel{name="MSIN",label="MSIN", align="left",},
+                new ExcelGridModel{name="TRUE_MSIN",label="TRUE_MSIN", align="left",},
+                new ExcelGridModel{name="COUNTRY",label="COUNTRY", align="left",},
+                new ExcelGridModel{name="VENDOR",label="VENDOR", align="left",},
+                new ExcelGridModel{name="FRP_KEY",label="FRP_KEY", align="left",},
+                new ExcelGridModel{name="MDN",label="MDN", align="left",},
+                new ExcelGridModel{name="SIM_ICCID",label="SIM_ICCID", align="left",},
+                new ExcelGridModel{name="MSN",label="MSN", align="left",},
+                new ExcelGridModel{name="CLOUD_BIND_KEY",label="CLOUD_BIND_KEY", align="left",},
+                new ExcelGridModel{name="IMSI",label="IMSI", align="left",},
+                new ExcelGridModel{name="MOBILE_NO",label="MOBILE_NO", align="left",},
+                new ExcelGridModel{name="ARRIVAL_DATE",label="ARRIVAL_DATE", align="left",},
+                new ExcelGridModel{name="RSN",label="RSN", align="left",},
+                new ExcelGridModel{name="SCN",label="SCN", align="left",},
+                new ExcelGridModel{name="SIMCARD_MODE",label="SIMCARD_MODE", align="left",},
+                new ExcelGridModel{name="FCK_SIMLOCK",label="FCK_SIMLOCK", align="left",},
+                new ExcelGridModel{name="USIM",label="USIM", align="left",},
+                new ExcelGridModel{name="EMMC_ID",label="EMMC_ID", align="left",},
+                new ExcelGridModel{name="PUBLICKEY",label="PUBLICKEY", align="left",},
+                new ExcelGridModel{name="USB_PORT_MODE",label="USB_PORT_MODE", align="left",},
+                new ExcelGridModel{name="NCK_SIMLOCK",label="NCK_SIMLOCK", align="left",},
+                new ExcelGridModel{name="PLMNNS",label="PLMNNS", align="left",},
+                new ExcelGridModel{name="PLMNNW",label="PLMNNW", align="left",},
+                new ExcelGridModel{name="PLMNSP",label="PLMNSP", align="left",},
+                new ExcelGridModel{name="PLMN_MCCMNC",label="PLMN_MCCMNC", align="left",},
+                new ExcelGridModel{name="PLMN_MSIN",label="PLMN_MSIN", align="left",},
+                new ExcelGridModel{name="PLMN_SID",label="PLMN_SID", align="left",},
+                new ExcelGridModel{name="PLMNCP",label="PLMNCP", align="left",},
+                new ExcelGridModel{name="PLMNSM",label="PLMNSM", align="left",},
+                new ExcelGridModel{name="NCK_FEATUREINDS",label="NCK_FEATUREINDS", align="left",},
+                new ExcelGridModel{name="DCK_COUNT_MAX",label="DCK_COUNT_MAX", align="left",},
+                new ExcelGridModel{name="NCK_DIAGUNLOCK",label="NCK_DIAGUNLOCK", align="left",},
+                new ExcelGridModel{name="NCK_NCKNSCKSPCKRESET",label="NCK_NCKNSCKSPCKRESET", align="left",},
+                new ExcelGridModel{name="UDID",label="UDID", align="left",},
+                new ExcelGridModel{name="PRODUCT_NAME",label="PRODUCT_NAME", align="left",},
+                new ExcelGridModel{name="TRUST_DEVICE_IDS",label="TRUST_DEVICE_IDS", align="left",},
+                new ExcelGridModel{name="CERTIFY_CODE",label="CERTIFY_CODE", align="left",},
+
+            };
+            var fileName = $"查询{Names}.xlsx";
+            return excelHeper.ExcelDownloadNPOI(rsValTb, config, fileName);
+        }
+        [HttpPost]
         [Route("OutExportData")]
         public IActionResult OutExportData([FromForm] IFormCollection fm)
         {
@@ -713,12 +976,12 @@ namespace API_COM.Controllers
             }
             ExcelHelper excelHeper = new ExcelHelper();
             List<ExcelGridModel> config = new List<ExcelGridModel>
-            { 
+            {
                 new ExcelGridModel{name="V_CPN",label="商品编码", align="left",},
                 new ExcelGridModel{name="V_IMEI",label="串号", align="left",},
                 new ExcelGridModel{name="V_PO",label="华盛采购单号", align="left",},
                 new ExcelGridModel{name="V_PROD_DESC_CUST",label="商品名称", align="left",},
-                new ExcelGridModel{name="V_PROVINCE",label="省分", align="left",}, 
+                new ExcelGridModel{name="V_PROVINCE",label="省分", align="left",},
             };
             var fileName = $"查询{Names}.xlsx";
             return excelHeper.ExcelDownloadNPOI(rsVal, config, fileName);

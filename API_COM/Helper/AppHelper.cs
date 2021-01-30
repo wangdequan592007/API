@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net; 
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -227,7 +227,7 @@ namespace API_COM.Helper
             }
             return null;
         }
-        public static bool I_MODEL(string mO,ref string pN,ref string cPN,ref string mESG)
+        public static bool I_MODEL(string mO, ref string pN, ref string cPN, ref string mESG)
         {
             string sql = $"SELECT A.ITEM_CODE PN,B.PNCODE CPN FROM WORK_WORKJOB A LEFT JOIN ODM_MODEL B ON A.ITEM_CODE=B.BOM WHERE A.WORKJOB_CODE='{mO}'";
             DataTable dataTable = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
@@ -238,12 +238,12 @@ namespace API_COM.Helper
             }
             if (dataTable.Rows.Count > 0)
             {
-                pN= dataTable.Rows[0]["PN"].ToString();
+                pN = dataTable.Rows[0]["PN"].ToString();
                 cPN = dataTable.Rows[0]["CPN"].ToString();
             }
             else
             {
-                mESG = mO+ "产品编码绑定机种代码信息未维护";
+                mESG = mO + "产品编码绑定机种代码信息未维护";
             }
 
             return true;
@@ -370,9 +370,9 @@ namespace API_COM.Helper
                 while (-1 != sr.Peek())
                 {
                     strBuilder.Append(sr.ReadLine());
-                } 
-                string result = strBuilder.ToString(); 
-                JsonData jd = JsonMapper.ToObject(result); 
+                }
+                string result = strBuilder.ToString();
+                JsonData jd = JsonMapper.ToObject(result);
                 string code = jd["code"].ToString();
                 string description = jd["desc"].ToString();
                 string api_code = code;
@@ -399,7 +399,7 @@ namespace API_COM.Helper
             {
 
                 return false;
-            } 
+            }
         }
 
         /// <summary>  
@@ -410,11 +410,11 @@ namespace API_COM.Helper
         /// <param name="type">类型</param>  
         /// <returns></returns>  
         public static string HttpApi(string url, string jsonstr, string type)
-        { 
+        {
             Encoding encoding = Encoding.UTF8;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);//webrequest请求api地址  
             request.Timeout = 1000000000;
-            request.Accept = "application/json"; 
+            request.Accept = "application/json";
             request.ContentType = "application/json";
             request.Headers.Add("Accept-Encoding", "");
             request.Method = type.ToUpper().ToString();//get或者post  
@@ -427,9 +427,9 @@ namespace API_COM.Helper
                 return reader.ReadToEnd();
             }
         }
-        public static bool  InsertWMS_LOG(string dn1, string csn, string boxtype, string boxsn, string sscc, string crt_user,string errCode,string errName)
+        public static bool InsertWMS_LOG(string dn1, string csn, string boxtype, string boxsn, string sscc, string crt_user, string errCode, string errName)
         {
-          string  StrInsert = "INSERT INTO WMS_LOG(DN1,CSN,BOXTYPE,BOXSN,SSCC,CRT_USER,ERR_CODE,ERR_NAME)VALUES('" + dn1 + "',:CSN,'" + boxtype + "','" + boxsn + "',  '" + sscc + "','" + crt_user + "','" + errCode + "','" + errName + "')";
+            string StrInsert = "INSERT INTO WMS_LOG(DN1,CSN,BOXTYPE,BOXSN,SSCC,CRT_USER,ERR_CODE,ERR_NAME)VALUES('" + dn1 + "',:CSN,'" + boxtype + "','" + boxsn + "',  '" + sscc + "','" + crt_user + "','" + errCode + "','" + errName + "')";
             OracleConnection conn = new OracleConnection(UserHelp.OracleConnection);
             try
             {
@@ -439,9 +439,9 @@ namespace API_COM.Helper
                     OracleParameter oracleParameter = new OracleParameter("CSN", OracleDbType.Clob);
                     oracleParameter.Value = csn;
                     cmd.Parameters.Add(oracleParameter);
-                    cmd.ExecuteNonQuery(); 
-                    conn.Close(); 
-                    return true; 
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
                 }
             }
             catch (OracleException ex)
@@ -505,7 +505,7 @@ namespace API_COM.Helper
                 return "";
             }
         }
-        public static string ToTalDELIVERY_QUANTITY(string v_po,string v_dn)
+        public static string ToTalDELIVERY_QUANTITY(string v_po, string v_dn)
         {
             string sql = $" SELECT  SUM(TO_NUMBER( A.V_DELIVERY_QUANTITY)) FROM WMS_ORDERS A WHERE NOT EXISTS(SELECT B.DN1 FROM WMS_SSCCMODEL B WHERE A.V_DN=B.DN1 AND B.DNTYPE IN(1,0)) AND A.V_PO='{v_po}' AND A.V_DN<>'{v_dn}'";
             DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
@@ -518,7 +518,7 @@ namespace API_COM.Helper
                 return "";
             }
         }
-        public static string  SSCCMODEL(string dn1)
+        public static string SSCCMODEL(string dn1)
         {
             string sql = $"SELECT T.DNTYPE FROM WMS_SSCCMODEL T WHERE DN1='{dn1}'";
             DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
@@ -531,5 +531,147 @@ namespace API_COM.Helper
                 return "";
             }
         }
+        public static string V_WAREHOUSE_IDEN(string dn1)
+        {
+            string sql = $"SELECT (SELECT V_EN FROM WMS_WAREHOUSE WHERE V_ID= T1.V_WAREHOUSE_ID AND ROWNUM=1) V_EN FROM WMS_ORDERS T1  WHERE T1.V_DN='{dn1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public static string V_WAREHOUSE_ID(string dn1)
+        {
+            string sql = $"SELECT V_WAREHOUSE_ID FROM WMS_ORDERS T1  WHERE T1.V_DN='{dn1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public static string V_SCRIPT(string dn1)
+        {
+            string sql = $"SELECT SCRIPT FROM ODM_SCRIPT_TXT T WHERE T.SCRIPTITEM='{dn1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public static bool V_CK_DNCATONID(string dn1, ref string Msg)
+        {
+            string sql = $"SELECT V_DN FROM WMS_ORDERS  A WHERE A.V_DN='{dn1}'";// AND EXISTS(SELECT B.DN1 FROM WMS_SSCCMODEL B WHERE B.DN1= A.V_DN)
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                sql = $"SELECT V_DN FROM WMS_ORDERS  A WHERE A.V_DN='{dn1}' AND EXISTS(SELECT B.DN1 FROM WMS_SSCCMODEL B WHERE B.DN1= A.V_DN)";
+                dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+                if (dt.Rows.Count > 0)
+                {
+                    sql = $" SELECT DN1 FROM WMS_SSCCMODEL T WHERE T.DN1='{dn1}' AND T.DNTYPE=1";
+                    dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+                    if (dt.Rows.Count > 0)
+                    {
+                        Msg = "PASS";
+                        return true;
+                    }
+                    else
+                    {
+                        Msg = $"当前发货单{dn1}未允收";
+                        return false;
+                    }
+                }
+                else
+                {
+                    Msg = $"当前发货单{dn1}未送检";
+                    return false;
+                }
+            }
+            else
+            {
+                Msg = $"当前发货单{dn1}未创建";
+                return false;
+            }
+        }
+        /// <summary>
+        /// 获取华为编码
+        /// </summary>
+        /// <param name="DN1"></param>
+        /// <returns></returns>
+        public static string Gt_HWBOM(string DN1)
+        {
+            string sql = $"SELECT (NVL((SELECT  PMAO004 FROM  PMAO_T@DLT100 T WHERE PMAO001='2200003'  AND PMAO002=V_PN AND ROWNUM=1),V_PN))BOM FROM WMS_ORDERS T WHERE T.V_DN='{DN1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        /// <summary>
+        /// 栈板号获取dn
+        /// </summary>
+        /// <param name="DN1"></param>
+        /// <returns></returns>
+        public static string Gt_DNbyPallet(string DN1)
+        {
+            string sql = $"SELECT T.DN1 FROM WMS_SSCCINFO T WHERE T.BOXSN='{DN1}' ORDER BY T.INPUTDATE DESC";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public static string Gt_CtPalletBydn(string DN1, string SSCC1)
+        {
+            string sql = $"SELECT COUNT(*) FROM WMS_SSCCINFO T  WHERE DN1='{DN1}' AND SSCC='{SSCC1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public static string Gt_DNTYPE(string DN1, string SSCC1)
+        {
+            string sql = $"SELECT T.DNTYPE FROM WMS_SSCCMODEL T  WHERE DN1='{DN1}' AND SSCC='{SSCC1}'";
+            DataTable dt = OracleHelper.ExecuteDataTable(UserHelp.OracleConnection, sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        internal static DataTable GetHw_DATA(string v_DN, string v_SSCC, string v_CODE, ref string v_MSG)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }
